@@ -170,10 +170,10 @@
     <div class="hero-body">
       <div class="content has-text-centered">
         <h2 class="subtitle">
-          <span class="dnerf">Sight over Sight</span> presents a novel approach to perception-aware reinforcement learning for efficient robotic inspection tasks.
+          <span class="dnerf">Sight over Sight</span> presents a novel approach to perception-aware, efficient robotic inspection tasks, based on an Reinforcement Learning framework.
         </h2>
         <p class="content">
-          Coming soon: Interactive demonstrations and visualization of our perception-aware robotic inspection methodology.
+          Coming soon: Demonstrations and visualization of our perception-aware robotic inspection methodology.
         </p>
       </div>
     </div>
@@ -189,19 +189,33 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            This work presents a novel approach to perception-aware reinforcement learning for efficient robotic inspection tasks.
-            Our method combines advanced perception techniques with reinforcement learning to enable robots to perform 
-            efficient and thorough inspections of complex environments.
+            Autonomous inspection is a central problem in
+            robotics, with applications ranging from industrial monitoring
+            to search-and-rescue. Traditionally, inspection has often been
+            reduced to navigation tasks, where the objective is to reach
+            a predefined location while avoiding obstacles. However, this
+            formulation captures only part of the real inspection problem.
+            In real-world environments, the inspection targets may become
+            visible well before their exact coordinates are reached, making
+            further movement both redundant and inefficient. 
           </p>
           <p>
-            By integrating perception awareness into the learning process, our approach allows robots to make informed 
-            decisions about where to look and how to navigate during inspection tasks. This leads to more efficient 
-            coverage and better detection of anomalies or points of interest.
-          </p>
-          <p>
-            We demonstrate that our <span class="dnerf">Sight over Sight</span> methodology significantly improves 
-            inspection efficiency while maintaining high detection accuracy across various robotic platforms and 
-            inspection scenarios.
+            What matters more for inspection is not simply arriving at the target’s
+            position, but positioning the robot at a viewpoint from which the
+            target becomes observable. In this work, we revisit inspection
+            from a perception-aware perspective. We propose an end-to-end
+            reinforcement learning framework that explicitly incorporates
+            target visibility as the primary objective, enabling the robot
+            to find the shortest trajectory that guarantees visual contact
+            with the target without relying on a map. The learned policy
+            leverages both perceptual and proprioceptive sensing and is
+            trained entirely in simulation, before being deployed to a real-
+            world robot. We further develop an algorithm to compute
+            ground-truth shortest inspection paths, which provides a ref-
+            erence for evaluation. Through extensive experiments, we show
+            that our method outperforms existing classical and learning-
+            based navigation approaches, yielding more efficient inspection
+            trajectories in both simulated and real-world settings.
           </p>
         </div>
       </div>
@@ -232,12 +246,7 @@
         <div class="content">
           <h2 class="title is-3">Methodology</h2>
           <p>
-            Our perception-aware reinforcement learning approach combines state-of-the-art computer vision 
-            techniques with intelligent path planning to optimize robotic inspection tasks.
-          </p>
-          <p>
-            Key components include adaptive viewpoint selection, efficient coverage algorithms, and 
-            real-time perception feedback integration.
+            Stay tuned, coming soon!
           </p>
         </div>
       </div>
@@ -249,11 +258,7 @@
         <div class="columns is-centered">
           <div class="column content">
             <p>
-              Our approach demonstrates significant improvements in inspection efficiency and accuracy 
-              across multiple robotic platforms and inspection scenarios.
-            </p>
-            <p>
-              Detailed results and comparisons with baseline methods will be presented in the full paper.
+              Stay tuned, coming soon. Spoiler: We are efficient! 
             </p>
           </div>
 
@@ -269,8 +274,7 @@
 
         <div class="content has-text-justified">
           <p>
-            Future work will explore extensions to multi-robot inspection scenarios and integration 
-            with advanced sensor modalities for enhanced perception capabilities.
+            Future work will explore extensions to non-planar movement and 3D dynamics.
           </p>
         </div>
 
@@ -286,9 +290,10 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{sightoversite2024,
-  author    = {Author Name and Author Name and Author Name},
+  author    = {R. Kuhlmann and J. Wolfram, B. Sun, J. Xing, D. Scaramuzza, M. Pollefeys, C. Cadena},
   title     = {Sight over Sight: Perception-Aware Reinforcement Learning for Efficient Robotic Inspection},
-  journal   = {Conference/Journal Name},
+  url       = {arxiv.org},
+  eprinttype= {arXiv},
   year      = {2024},
 }</code></pre>
   </div>
