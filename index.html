@@ -42,38 +42,6 @@
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="#">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="#">
-            Coming Soon
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav>
-
-
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -82,28 +50,34 @@
           <h1 class="title is-1 publication-title">Sight over Sight: Perception-Aware Reinforcement Learning for Efficient Robotic Inspection</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="#">Richard Kuhlmann</a><sup>1</sup> <sup>*</sup>,</span>
+              <a href="#">Richard Kuhlmann</a><sup>1, *</sup>,</span>
             <span class="author-block">
-              <a href="#">Jakob Wolfram</a><sup>1</sup> <sup>*</sup>,</span>
+              <a href="#">Jakob Wolfram</a><sup>1, *</sup>,</span>
             <span class="author-block">
-              <a href="#">Boyang Sun</a><sup>1</sup>,
+              <a href="https://boysun045.github.io/boysun-website/">Boyang Sun</a><sup>2</sup>,
+            </span>
             <span class="author-block">
-              <a href="#">Jiaxu Xing</a><sup>2</sup>,
+              <a href="https://jiaxux.ing/">Jiaxu Xing</a><sup>3</sup>,
+            </span>
+
+	<br> <!-- separate line -->
             <span class="author-block">
-              <a href="#">Davide Scaramuzza</a><sup>2</sup>,
+              <a href="https://rpg.ifi.uzh.ch/people_scaramuzza.html">Davide Scaramuzza</a><sup>3</sup>
+            </span>
             <span class="author-block">
-              <a href="#">Marc Pollefeys</a><sup>1</sup> <sup>3</sup>,
+              <a href="https://people.inf.ethz.ch/pomarc/">Marc Pollefeys</a><sup>2</sup>
+            </span>
             <span class="author-block">
-              <a href="#">Cesar Cadena</a><sup>1</sup>,
+              <a href="https://n.ethz.ch/~cesarc/">Cesar Cadena</a><sup>1</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>ETH Zürich,</span>
-            <span class="author-block"><sup>2</sup>University of Zürich,</span>
-            <span class="author-block"><sup>3</sup>Microsoft</span>
-            <br>
-            <div class="author-block"><sup>*</sup>Authors cotributed equally to this work</div>
+            <span class="author-block"><sup>*</sup>Equal Contribution,</span>
+	<br> <!-- separate line -->
+            <span class="author-block"><sup>1</sup>Robotic Systems Lab, ETH Zurich,</span>
+            <span class="author-block"><sup>2</sup>Computer Vision and Geometry Group, ETH Zurich</span>
+            <span class="author-block"><sup>3</sup>Robotics and Perception Group, University of Zurich</span>
           </div>
 
           <div class="column has-text-centered">
@@ -170,7 +144,7 @@
     <div class="hero-body">
       <div class="content has-text-centered">
         <h2 class="subtitle">
-          <span class="dnerf">Sight over Sight</span> presents a novel approach to perception-aware reinforcement learning for efficient robotic inspection tasks.
+          <span class="dnerf">Sight over Site</span> presents a novel approach to perception-aware reinforcement learning for efficient robotic inspection tasks.
         </h2>
         <p class="content">
           Coming soon: Interactive demonstrations and visualization of our perception-aware robotic inspection methodology.
@@ -206,6 +180,18 @@
         </div>
       </div>
     </div>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Method</h2>
+        <img src="./static/images/teaser-figure.png" alt="Method" style="max-width: 80%; height: auto;">
+        <h2 class="subtitle has-text-centered" style="font-size: 15px;">
+	To obtain visual access to a given target, the inspection policy (green path) results in a shorter trajectory compared to the navigation policy (red path). Our proposed RL-based policy (bottom right) takes egocentric depth input along with the target and robot state to achieve efficient inspection.
+        </h2>
+    </div>
+  </div>
+</section>
     <!--/ Abstract. -->
 
     <!-- Paper video. -->
@@ -285,11 +271,11 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{sightoversite2024,
-  author    = {Author Name and Author Name and Author Name},
+    <pre><code>@article{sightoversite2025,
+  author    = {Kuhlmann, Richard and Wolfram, Jakob and Sun, Boyang and Xing, Jiaxu and Scaramuzza, Davide and Pollefeys, Marc and Cadena, Cesar},
   title     = {Sight over Sight: Perception-Aware Reinforcement Learning for Efficient Robotic Inspection},
-  journal   = {Conference/Journal Name},
-  year      = {2024},
+  journal   = {ArXiv},
+  year      = {2025},
 }</code></pre>
   </div>
 </section>
