@@ -90,11 +90,11 @@
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
-                  <span>Paper</span>
+                  <span>IEEE</span>
                 </a>
               </span>
               <span class="link-block">
-                <a href="#"
+                <a href="https://arxiv.org/pdf/2509.17877"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -104,7 +104,7 @@
               </span>
               <!-- Video Link. -->
               <span class="link-block">
-                <a href="#"
+                <a href="#video"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
@@ -147,9 +147,6 @@
         <h2 class="subtitle">
           <span class="dnerf">Sight over Site</span> presents a novel approach to perception-aware reinforcement learning for efficient robotic inspection tasks.
         </h2>
-        <p class="content">
-          Coming soon: Demonstrations and visualization of our perception-aware robotic inspection methodology.
-        </p>
       </div>
     </div>
   </div>
@@ -199,7 +196,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Method</h2>
+        <h2 class="title is-3">Overview</h2>
         <img src="./static/images/teaser-figure.png" alt="Method" style="max-width: 80%; height: auto;">
         <h2 class="subtitle has-text-centered" style="font-size: 15px;">
 	To obtain visual access to a given target, the inspection policy (green path) results in a shorter trajectory compared to the navigation policy (red path). Our proposed RL-based policy (bottom right) takes egocentric depth input along with the target and robot state to achieve efficient inspection.
@@ -210,11 +207,19 @@
     <!--/ Abstract. -->
 
     <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
+    <div id="video" class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
-          <p>Video demonstration coming soon.</p>
+          <video controls style="width: 100%;">
+            <source src="./static/videos/ICRA_Video - Sight Over Site.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="content has-text-justified" style="margin-top: 1.5rem;">
+          <p>
+            This video provides an overview of our results. First, results from simulation are shown, in comparison to a baseline navigation policy (<a href="https://arxiv.org/pdf/1911.00357">DDPPO</a>). After that, hardware experiments are presented. 
+          </p>
         </div>
       </div>
     </div>
@@ -229,26 +234,61 @@
     <div class="columns is-centered">
 
       <!-- Methodology. -->
-      <div class="column">
+      <div class="column is-full-width">
         <div class="content">
           <h2 class="title is-3">Methodology</h2>
+          <div class="has-text-centered">
+            <img src="./static/images/network_cropped.png" alt="Network Architecture" style="max-width: 80%; height: auto;">
+          </div>
+          <div class="content has-text-justified" style="margin-top: 1.5rem;">
           <p>
-            Stay tuned, coming soon!
+            Unlike classical navigation, where the goal is to reach a specific location, our inspection task requires finding the <em>shortest path to any vantage point</em> from which a designated target becomes visible. We tackle this with an end-to-end reinforcement learning approach that avoids the overhead of explicit map construction. This allows the agent to operate in unseen environments, while still ensuring collision-free trajectories.
           </p>
+          <p>
+            At each time step, the agent observes an egocentric depth image, its relative position and orientation to the target, and its three most recent actions. From these inputs, it selects a continuous action that either moves the robot forward or rotates it in place. Translational and rotational dynamics are decoupled for more stable training. A compact neural network — combining a three-layer CNN for depth features with single-layer perceptrons for the remaining inputs — produces the policy, trained with Proximal Policy Optimization (PPO). To simulate the environment, we use the <a href="https://arxiv.org/pdf/1904.01201">Habitat</a> simulator with indoor scenes from the <a href="https://arxiv.org/pdf/1808.10654">Gibson</a> dataset.
+          </p>
+          <p>
+            The reward function balances multiple objectives:
+          </p>
+          <ul>
+            <li><strong>Dense navigation reward:</strong> Encourages progress toward the optimal inspection point.</li>
+            <li><strong>Orientation reward:</strong> Rewards facing the target.</li>
+            <li><strong>Stall penalty:</strong> Prevents the agent from stalling or oscillating in place.</li>
+            <li><strong>Step cost:</strong> Incentivizes efficienct movement.</li>
+            <li><strong>Terminal reward:</strong> Received at episode end, measures how close the agent is to the ground-truth optimal viewpoint.</li>
+            <li><strong>Collision and timeout penalties:</strong> Enforce safe and timely behavior.</li>
+          </ul>
+          <p>
+            To establish the ground truth, we develop an algorithm based on A* search with visibility checks that computes the provably shortest inspection path under full map knowledge — serving as a rigorous benchmark for evaluating our learned, map-free policy. Note that this inspection point is used for training but not needed at test time.
+          </p>
+          </div>
         </div>
       </div>
+    </div>
       <!--/ Methodology. -->
 
+    <div class="columns is-centered">
       <!-- Results. -->
-      <div class="column">
+      <div class="column is-full-width">
         <h2 class="title is-3">Results</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              Stay tuned, coming soon. Spoiler: We are efficient! 
-            </p>
-          </div>
-
+        <div class="content has-text-justified">
+          <p>
+            We evaluate our policy on over 400 episodes across 14 unseen indoor environments from the <a href="https://arxiv.org/pdf/1808.10654">Gibson</a> dataset, using the <a href="https://arxiv.org/pdf/1904.01201">Habitat</a> simulator. We compare against three baselines: a random policy, a reactive obstacle avoider, and <a href="https://arxiv.org/pdf/1911.00357">DD-PPO</a>, which is a state-of-the-art RL-based point-goal navigation policy. Performance is measured using <em>Success Rate</em> (SR) and <em>Success-weighted Path Length</em> (SPL) The SR denotes the fraction of episodes where the target becomes visible. The SPL combines this with an additional penalty on longer-than-necessary trajectories.
+          </p>
+          <p>
+            We test under three increasingly realistic settings: with wall-sliding enabled (as in DD-PPO's training), with sliding disabled, and with collisions fully prohibited. While DD-PPO achieves the highest success rate when wall-sliding is available, our policy consistently produces <strong>more efficient paths</strong> (higher SPL) across all settings. DD-PPO's expectedly performance drops once simulator-specific sliding dynamics are removed, as it was trained with different dynamics. Our policy maintains a 79.57% success rate even under the strictest no-collision setting. This demonstrates strong collision avoidance capabilties.
+          </p>
+        </div>
+        <div class="has-text-centered">
+          <img src="./static/images/examples_combined.png" alt="Qualitative comparison between our policy and DD-PPO" style="max-width: 55%; height: auto;">
+        </div>
+        <p class="subtitle has-text-centered" style="font-size: 15px; margin-top: 0.75rem;">
+          Qualitative comparison between our policy and DD-PPO on test episodes. Our policy takes shorter, more efficient paths to inspect the target, while DD-PPO follows the shortest navigation path, often resulting in occluded views and longer trajectories.
+        </p>
+        <div class="content has-text-justified" style="margin-top: 1rem;">
+          <p>
+            Qualitatively, our policy actively seeks viewpoints that offer a clear line of sight to the target, rather than blindly following the shortest geometric path. We further validate the approach with zero-shot sim-to-real transfer on a Boston Dynamics Spot quadruped. The learned inspection behavior transfers directly without platform specific retraining. For results from the deployment, see the video.
+          </p>
         </div>
       </div>
     </div>
@@ -261,7 +301,7 @@
 
         <div class="content has-text-justified">
           <p>
-            Future work will explore extensions to non-planar movement and 3D dynamics.
+            Currently, our method assumes the target location is known beforehand, which limits applicability to scenarios with predefined inspection goals. A natural next step is to extend the framework toward joint target search and inspection, where the robot must first discover targets of interest before obtaining visual access. Additionally, relaxing the planar motion constraint to support full 3D movement — such as aerial inspection with drones — would broaden the range of applicable robotic platforms. Finally, scaling to multi-target and multi-agent settings, where several robots coordinate to efficiently inspect a set of targets, presents an exciting direction for future research.
           </p>
         </div>
 
